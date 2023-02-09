@@ -20,11 +20,11 @@ B = selection[1]
 # Declaring score and game end variables
 score = 0
 game_end = False
-
+# Print logo
+print(f"[red]{logo}[/red]")
 # The game loop 
 while not game_end:
-  # Prints logo and initial comparison statements 
-  print(f"[red]{logo}[/red]")
+  # Print initial comparison statements 
   print(f"Compare A: {A['name']}, a {A['description']}, from {A['country']}") 
   # For testing only
   #print(f"Compare A: {A['name']}, a {A['description']}, from {A['country']} : {A['follower_count']}") 
@@ -34,20 +34,20 @@ while not game_end:
   #print(f"Against B: {B['name']}, a {B['description']}, from {B['country']} : {B['follower_count']}")
   
   # Player input is stored as a choice which is then checked against the output of the compared function
-  choice = input("Who has more followers? Type 'A' or 'B': ")
+  choice = input("Who has more followers? Type 'A' or 'B': ").upper()
   # Returned value of compare function
   result = compare(A, B)
   # If choice is correct. Score is incremented and the game continues
   if choice == result:
     score += 1
     os.system('clear')
-    print(f"\n")
+    # Print logo
+    print(f"[red]{logo}[/red]")
     # Print current score
     print(f"[blue]You're right! Current score: {score}[/blue]")
-    # The dictionary entry with larger follower count now becomes A for the next comparison 
-    if result == 'B':
-      A = B
-    # B gets assigned a random entry from the data list
+    # Dictionary entry B now becomes A 
+    A = B
+    # Variable B gets assigned a random entry from the data list
     B = random.choice(data)
     # To avoid duplicate >> If B matches A, B is assigned another random entry from the data list 
     if B['name'] == A['name']:
